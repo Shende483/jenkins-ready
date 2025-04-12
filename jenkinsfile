@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+
+    environment {
+        FRONT_DIR = "/home/ubuntu/myapp/frontend"
+        BACK_DIR = "/home/ubuntu/myapp/backend"
+    }
+
+    stages {
+        stage('Clone Repo') {
+            steps {
+                git branch: 'main', url: 'https://github.com/username/repo.git'
+            }
+        }
+
+        stage('Install Frontend') {
+            steps {
+                dir('frontend') {
+                    sh 'npm install'
+                    sh 'npm run build'
+                }
+            }
+        }
+
+        stage('Install Backend') {
+            steps {
+                dir('backend') {
+                    sh 'npm install'
+                }
+            }
+        }
+
+        stage('Start Frontend and Backend') {
+            steps {
+                sh '''
+                pm2 delete all || true
+                pm2 start frontend/dist/index.js --name frontend-app
+                pm2 start backend/dist/main.js --name backend-app
+                pm2 save
+                '''
+            }
+        }
+    }
+}
