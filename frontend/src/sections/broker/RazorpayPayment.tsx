@@ -1,7 +1,8 @@
-import { Box, Button, Typography } from '@mui/material';
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import io from 'socket.io-client';
+import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+
+import { Box, Button, Typography } from '@mui/material';
 
 const socket = io('http://localhost:3039');
 

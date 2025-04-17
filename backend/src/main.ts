@@ -15,7 +15,7 @@ async function bootstrap() {
 
   // Enable CORS for the configured IP
   app.enableCors({
-    origin: process.env.FRONTEND_URL,
+    origin:  'http://srv588437.hstgr.cloud',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
@@ -48,7 +48,7 @@ SwaggerModule.setup('api-docs', app, document);
   const PORT = String(process.env.BACKEND_PORT);
   const IP_ADDRESS = String(process.env.BACKEND_IP);
 
-  await app.listen(PORT, IP_ADDRESS);
+  await app.listen(3050,'0.0.0.0');
   console.log(`✅ Server running on http://${IP_ADDRESS}:${PORT}`);
 }
 bootstrap();

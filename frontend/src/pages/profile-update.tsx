@@ -1,6 +1,10 @@
+import type { SelectChangeEvent } from '@mui/material';
+
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import type { SelectChangeEvent } from '@mui/material';
+
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {
     Box,
     Grid,
@@ -20,10 +24,9 @@ import {
     InputAdornment,
     FormControlLabel,
 } from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { COUNTRIES, OTP_LENGTH, MOBILE_LENGTH, MAX_EMAIL_LENGTH } from '../layouts/Constant';
-import axios from 'axios';
+
 import { getToken } from "../utils/getTokenFn";
+import { COUNTRIES, OTP_LENGTH, MOBILE_LENGTH, MAX_EMAIL_LENGTH } from '../layouts/Constant';
 
 interface UserCredentials {
     firstName: string;

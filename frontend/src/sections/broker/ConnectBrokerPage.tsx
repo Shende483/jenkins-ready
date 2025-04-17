@@ -1,6 +1,10 @@
-import { Box, Button, Card, FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from '@mui/material';
+import type { SelectChangeEvent} from '@mui/material';
+
 import { useState } from 'react';
 import io from 'socket.io-client';
+
+import { Box, Card, Grid, Button, Select, MenuItem, TextField, InputLabel, Typography, FormControl } from '@mui/material';
+
 import { MarketData } from './json/MarketData';
 
 

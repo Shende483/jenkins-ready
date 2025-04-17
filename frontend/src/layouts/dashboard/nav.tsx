@@ -1,10 +1,13 @@
 import type { Theme, SxProps, Breakpoint } from '@mui/material/styles';
+
 import { useEffect } from 'react';
+
 import Box from '@mui/material/Box';
 import ListItem from '@mui/material/ListItem';
 import { useTheme } from '@mui/material/styles';
 import ListItemButton from '@mui/material/ListItemButton';
 import Drawer, { drawerClasses } from '@mui/material/Drawer';
+
 import { usePathname } from '../../routes/hooks';
 import { RouterLink } from '../../routes/components';
 import { Scrollbar } from '../../components/scrollbar';

@@ -2,9 +2,13 @@
 /* eslint-disable no-new */
 
 
-import { useEffect, useRef, useState, MutableRefObject, RefObject } from 'react';
-import { Box, Button, Grid } from '@mui/material';
+import type { RefObject, MutableRefObject } from 'react';
+
+import { useRef, useState, useEffect } from 'react';
+
+import { Box, Grid, Button } from '@mui/material';
 import { Brightness4 } from '@mui/icons-material';
+
 import { initialSymbols } from './tradingview/SymbolDefine';
 
 // Declare TradingView globally to satisfy TypeScript

@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useState } from 'react';
+import { useMemo, useState, useContext, createContext } from 'react';
 
 export const initialSymbols = [
   'BTCUSDT', 'BTCUSDT.P', 'BINANCE:ETHUSDT.P', 'BINANCE:BNBUSDT.P',

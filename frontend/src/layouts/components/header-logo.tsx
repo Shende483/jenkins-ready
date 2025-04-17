@@ -1,9 +1,13 @@
-import { Box, Breakpoint, Typography } from "@mui/material";
+import type { Breakpoint} from "@mui/material";
+
+import { useRef, useState, useEffect } from "react";
+
+import { Box, Typography } from "@mui/material";
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
-import { useEffect, useRef, useState } from "react";
-import { _workspaces } from "../config-nav-workspace";
-import { navData } from "../config-nav-dashboard";
+
 import { NavDesktop } from "../dashboard/nav";
+import { navData } from "../config-nav-dashboard";
+import { _workspaces } from "../config-nav-workspace";
 
 export default function HeaderLogo() {
     const [open, setOpen] = useState(false);
