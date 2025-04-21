@@ -1,44 +1,38 @@
 pipeline {
     agent any
-
     environment {
-        FRONT_DIR = "/home/ubuntu/myapp/frontend"
-        BACK_DIR = "/home/ubuntu/myapp/backend"
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-cred')
     }
-
     stages {
-        stage('Clone Repo') {
+        stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/username/repo.git'
+                git branch: 'main', credentialsId: 'github-cred', url: 'https://github.com/Shende483/jenkins-ready.git'
             }
         }
-
-        stage('Install Frontend') {
+        stage('Build Frontend') {
             steps {
                 dir('frontend') {
-                    sh 'npm install'
-                    sh 'npm run build'
+                    sh 'docker build -t my-app-frontend:latest .'
                 }
             }
         }
-
-        stage('Install Backend') {
+        stage('Build Backend') {
             steps {
                 dir('backend') {
-                    sh 'npm install'
+                    sh 'docker build -t my-app-backend:latest .'
                 }
             }
         }
-
-        stage('Start Frontend and Backend') {
+        stage('Deploy') {
             steps {
-                sh '''
-                pm2 delete all || true
-                pm2 start frontend/dist/index.js --name frontend-app
-                pm2 start backend/dist/main.js --name backend-app
-                pm2 save
-                '''
+                sh 'docker-compose down'
+                sh 'docker-compose up -d'
             }
+        }
+    }
+    post {
+        always {
+            sh 'docker-compose logs'
         }
     }
 }
