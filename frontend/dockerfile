@@ -1,0 +1,38 @@
+# Step 1: Build stage
+FROM node:20 AS builder
+
+# Create app directory
+WORKDIR /app
+
+# Copy package files and install dependencies
+COPY package.json yarn.lock ./
+RUN yarn install
+
+# Copy the rest of the project
+COPY . .
+
+# Build the Vite project
+RUN yarn build
+
+# Step 2: Production stage
+FROM node:20 AS runner
+
+# Set environment variables
+ENV NODE_ENV=production
+
+# Create app directory
+WORKDIR /app
+
+# Copy only build output and required files
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/package.json ./
+COPY --from=builder /app/yarn.lock ./
+
+# Install only production dependencies (if needed)
+RUN yarn install --production
+
+# Expose the VITE_PORT (default 3030)
+EXPOSE 3030
+
+# Start the Vite preview server
+CMD ["yarn", "start"]
