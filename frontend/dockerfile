@@ -7,6 +7,6 @@ RUN yarn install
 
 COPY . .
 
-EXPOSE 3030
+EXPOSE 3020
 
 CMD ["yarn", "dev:host"]
