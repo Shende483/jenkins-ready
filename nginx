@@ -5,7 +5,7 @@ server {
     server_name srv588437.hstgr.cloud;
 
     location / {
-        proxy_pass http://localhost:3030;
+        proxy_pass http://localhost:3020;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -14,7 +14,7 @@ server {
     }
 
     location /api/ {
-        proxy_pass http://localhost:3050/;
+        proxy_pass http://localhost:3040/;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
